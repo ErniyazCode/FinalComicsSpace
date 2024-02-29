@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head') %>
+<body class="d-flex flex-column min-vh-100">
+<%- include('navbar') %>
+
+<div class="d-flex pb-5 justify-content-between">
+    <div class="input-group mb-3" style="width: 50%; margin: 0 auto;">
+        <select id="limit" class="form-select">
+            <option selected><%= limit %></option>
+            <option value=10>10</option>
+            <option value=15>15</option>
+        </select>
+    </div>
+
+</div>
+
+<section id="bdy2">
+    <div class="container">
+        <div class="row" id="comicsContainer">
+            <% comics.forEach(comic => { %>
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 25px;">
+                    <a href="/destination/<%= comic._id %>" style="color: black; text-decoration: none;">
+                        <div class="card">
+                            <div id="carousel<%= comic._id %>" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="<%= comic.img1 %>" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="<%= comic.img2 %>" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="<%= comic.img3 %>" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= comic._id %>" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= comic._id %>" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <!-- End Slider -->
+                            
+                            <div class="card-body">
+                                <h5 class="card-title"><%= comic.name %></h5>
+                                <p><%= comic.desc %></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<nav class="mx-auto">
+    <ul class="pagination">
+        <% for (let i=1; i <=totalPages; i++) { %>
+            <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                <a class="page-link" href="/admin?p=<%= i %>" data-page="<%= i %>">
+                    <%= i %>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+</nav>
+
+
+
+<%- include('footer') %>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const limitSelect = document.getElementById('limit');
+
+        function updatePaginationLinks(selectedValue) {
+            const paginationLinks = document.querySelectorAll('.pagination a');
+            paginationLinks.forEach(link => {
+                const currentPage = link.getAttribute('data-page');
+                link.href = `/destination?p=${currentPage}&l=${selectedValue}`;
+                console.log(selectedValue)
+            });
+        }
+
+        updatePaginationLinks(limitSelect.value);
+
+        limitSelect.addEventListener('change', function () {
+            const selectedValue = limitSelect.value;
+            window.location.href = `/destination?p=1&l=${selectedValue}`;
+            updatePaginationLinks(selectedValue);
+        });
+
+
+    });
+</script>  
+
+</body> 
+</html>

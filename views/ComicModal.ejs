@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Create new comic form</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form id="comicForm" action="/admin" method="post">
+        <div class="mb-3 row">
+            <label for="city" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="city" id="name" placeholder="Name" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="hotel" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="hotel" id="desc" placeholder="Description" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="hotel" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="price" id="price" placeholder="Price" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="img1" class="col-sm-2 col-form-label">Image URL</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="img1" id="img1" placeholder="Image URL" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="img2" class="col-sm-2 col-form-label">Image URL</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="img2" id="img2" placeholder="Image URL" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="img3" class="col-sm-2 col-form-label">Image URL</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="img3" id="img3" placeholder="Image URL" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <button type="submit" class="btn btn-primary" id="createComicBtn" data-bs-dismiss="modal">Create</button>
+        </div>
+    </form>
+</div>
+
